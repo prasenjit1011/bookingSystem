@@ -1,0 +1,23 @@
+<div>
+    <h4>Tambula Ticket Game</h4>
+    
+    <input name="numberOfPage" type="number" />
+    <input type="submit" value="Generate Ticket" />
+
+    <%  
+
+        let i = 0;
+        while(i<6){
+            i++;  
+    %>
+            <table style="border:1px solid #000; border-collapse: collapse; width: 700px; margin-top: 20px;" border="1" >
+                <% for(let j = i; j<i+3; j++){ %>
+                <tr>
+                    <% for(let k = 0; k<9; k++){ %>
+                    <th><%= data[j][k] %></th>
+                    <% } %>
+                </tr>
+                <% } %>
+            </table>
+    <% }  %>
+</div>

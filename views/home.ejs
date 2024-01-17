@@ -48,30 +48,42 @@
 
     <main role="main" class="container">
 
-      <div class="starter-template" style="width: 80%; margin: auto; background-color: aqua;">
+      <div class="starter-template" style="width: 80%; margin: auto; background-color: #FFF; border: 1px solid #000;">
 
         <h4>Tambula Ticket Game</h4>
         <form action="/" method="post" class="form-inline my-2 my-lg-0" style="width: 45%; margin: auto;">
-            <input name="numberOfPage" class="form-control mr-sm-2" type="number" placeholder="Generate Ticket" aria-label="Search">
+            <input name="numberOfPage" value="<%= numberOfPage %>" class="form-control mr-sm-2" type="number" placeholder="Generate Ticket" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Generate Ticket</button>
         </form>
       
         <%  
             let i = 0;
+            let pageNo = 0;
             if(data.length > 0){
-            while(i<6){
-            i++;  
+                while(pageNo < numberOfPage){
+                    i = pageNo*6;
+                    while(i < (pageNo+1) * 6){
+                        i++;  
+            %>
+                        <table style="border:1px solid #000; border-collapse: collapse; width: 100%; margin-top: 20px;" border="1" >
+                            <% for(let j = i; j<i+3; j++){ %>
+                            <tr>
+                                <% for(let k = 0; k<9; k++){ %>
+                                <th><%= data[j][k] %></th>
+                                <% } %>
+                            </tr>
+                            <% } %>
+                        </table>
+        <%  
+                    }
+
+                    pageNo++;
         %>
-                <table style="border:1px solid #000; border-collapse: collapse; width: 100%; margin-top: 20px;" border="1" >
-                    <% for(let j = i; j<i+3; j++){ %>
-                    <tr>
-                        <% for(let k = 0; k<9; k++){ %>
-                        <th><%= data[j][k] %></th>
-                        <% } %>
-                    </tr>
-                    <% } %>
-                </table>
-        <%  }}  %>
+                    <br /><hr style="border: 1px solid #000;" /><br />
+        <%
+                }
+            }  
+        %>
       </div>
     </div>
 

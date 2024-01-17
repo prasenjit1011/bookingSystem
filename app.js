@@ -2,8 +2,18 @@ console.log('\n\n-: App Started :-');
 
 const { count } = require('console');
 const express   = require('express');
-const app       = express();
+const bodyParser    = require('body-parser');
+const session       = require('express-session');
 
+const mongoose      = require('mongoose');
+const mongodbStore  = require('connect-mongodb-session')(session);
+const MONGODB_URI   = "mongodb+srv://tester:tester1234@cluster0.hlicuim.mongodb.net/Mydb?retryWrites=true&w=majority";
+const store         = new mongodbStore({ uri: MONGODB_URI, collection: 'sessions' });
+
+
+const app       = express();
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
@@ -46,8 +56,8 @@ app.post('/', (req, res, next)=>{
 
 
     while(numberOfPageTicket>0){
-        n--;
-        console.log('---------------------------------------------------', n)
+        numberOfPageTicket--;
+        console.log('---------------------------------------------------', numberOfPageTicket)
         ticketNumber = [];
         for(x = 0; x<3; ){
             arr = [];
@@ -111,22 +121,16 @@ app.post('/', (req, res, next)=>{
 
 
 
-    let xyz = numberArr[1][1];
-    console.log(Array.isArray(xyz));
-
-    console.log(numberArr.length, numberArr[1]);
-
-    console.log('->>>>>>>>>>>>>>>>>>>>>--');
-
 
 
 
 
 
     //res.send('-: Welcome :-');
-    res.render('home', {data:numberArr});
+    res.render('home', {numberOfPage:numberOfPage, data:numberArr});
     next();
 });
 
 console.log('-: App Running :-');
-app.listen(3000);
+
+mongoose.connect(MONGODB_URI).then(result => app.listen(3001)).catch(err=>console.log(err));

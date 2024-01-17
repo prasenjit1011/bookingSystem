@@ -8,7 +8,6 @@ exports.homePage = (req, res, next)=>{
 
 exports.ticketData = (req, res, next) => {
     console.clear();
-    console.log('---------------------------------------------------------');
  
     let number      = 0;
     let arr         = [];
@@ -37,7 +36,6 @@ exports.ticketData = (req, res, next) => {
 
     while(numberOfPageTicket>0){
         numberOfPageTicket--;
-        console.log('---------------------------------------------------', numberOfPageTicket)
         ticketNumber = [];
         for(x = 0; x<3; ){
             arr = [];
@@ -60,7 +58,7 @@ exports.ticketData = (req, res, next) => {
                         continue;
                     }
 
-                    if(i<5 && j<4){
+                    if(i<nonZeroCnt && j<zeroCnt){
                         if(number%2){
                             i++;
                             arr.push(number);
@@ -72,7 +70,7 @@ exports.ticketData = (req, res, next) => {
                         }
                     }
                     else{
-                        if(j == 4){
+                        if(j == zeroCnt){
                             arr.push(number);
                             ticketNumber.push(number);
                         }
@@ -101,14 +99,6 @@ exports.ticketData = (req, res, next) => {
         }
     }
 
-
-
-
-
-
-
-
-    //res.send('-: Welcome :-');
     res.render('home', {numberOfPage:numberOfPage, data:numberArr});
     next();
 }

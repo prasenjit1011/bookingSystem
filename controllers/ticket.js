@@ -1,6 +1,7 @@
+const TicketModel = require('../models/ticket')
+
 exports.homePage = (req, res, next)=>{
-    res.send('-----');
-    //res.render('./home', {data:[]});
+    res.render('./home', {numberOfPage:0, data:[]});
     next();
 }
 
@@ -94,6 +95,8 @@ exports.ticketData = (req, res, next) => {
             if(arrStatus){
                 x++;
                 numberArr.push(arr);
+                const newTicket = new TicketModel({rowdata:arr});
+                newTicket.save();
             }
         }
     }

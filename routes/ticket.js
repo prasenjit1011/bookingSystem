@@ -6,3 +6,4 @@ const ticketCtrl = require('../controllers/ticket');
 router.get('/', ticketCtrl.homePage);
 router.post('/', ticketCtrl.ticketData);
 
+module.exports  = router;

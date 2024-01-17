@@ -51,26 +51,27 @@
       <div class="starter-template" style="width: 80%; margin: auto; background-color: aqua;">
 
         <h4>Tambula Ticket Game</h4>
-        <form action="/" method="post" class="form-inline my-2 my-lg-0" style="width: 35%; margin: auto;">
-            <input name="numberOfPage" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <form action="/" method="post" class="form-inline my-2 my-lg-0" style="width: 45%; margin: auto;">
+            <input name="numberOfPage" class="form-control mr-sm-2" type="number" placeholder="Generate Ticket" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Generate Ticket</button>
         </form>
       
         <%  
             let i = 0;
+            if(data.length > 0){
             while(i<6){
             i++;  
         %>
-            <table style="border:1px solid #000; border-collapse: collapse; width: 100%; margin-top: 20px;" border="1" >
-                <% for(let j = i; j<i+3; j++){ %>
-                <tr>
-                    <% for(let k = 0; k<9; k++){ %>
-                    <th><%= data[j][k] %></th>
+                <table style="border:1px solid #000; border-collapse: collapse; width: 100%; margin-top: 20px;" border="1" >
+                    <% for(let j = i; j<i+3; j++){ %>
+                    <tr>
+                        <% for(let k = 0; k<9; k++){ %>
+                        <th><%= data[j][k] %></th>
+                        <% } %>
+                    </tr>
                     <% } %>
-                </tr>
-                <% } %>
-            </table>
-    <% }  %>
+                </table>
+        <%  }}  %>
       </div>
     </div>
 

@@ -9,20 +9,32 @@ app.set('views', 'views');
 
 
 
-
-app.post('/', (req, res, next)=>{
-    res.render('onito', {data:numberArr});
+app.get('/', (req, res, next)=>{
+    res.render('home', {data:[]});
     next();
 });
 
 
-app.get('/', (req, res, next)=>{
+app.post('/', (req, res, next)=>{
 
-
-    //console.clear();
+    console.clear();
     console.log('---------------------------------------------------------');
-    var arr1 = ["a","b","c"];
-    var arr2 = ["a","b", "c"];
+ 
+    let number      = 0;
+    let arr         = [];
+    let numberArr   = [];
+    let nonZeroCnt  = 5;
+    let zeroCnt     = 4;
+    let numberOfPage        = req.body.numberOfPage;
+    let numberOfPageTicket  = 6*numberOfPage;
+
+    let x = 0;
+    let y = 0;
+    let i = 0
+    let j = 0;
+    let k = 0;
+
+    let ticketNumber = [];
 
     const isTrue = (arr1, arr2) => {
         if (arr1.every((u, i) => u === arr2[i] )){
@@ -31,32 +43,9 @@ app.get('/', (req, res, next)=>{
             return false;
         }
     }
-    //console.log(isTrue(arr1, arr2));
 
 
-
-
-
-
-
-
-
-    let number      = 0;
-    let arr         = [];
-    let numberArr   = [];
-    let nonZeroCnt  = 5;
-    let zeroCnt     = 4;
-
-    let x = 0;
-    let y = 0;
-    let i = 0
-    let j = 0;
-    let k = 0;
-    let n = 1*6;
-
-    let ticketNumber = [];
-
-    while(n>0){
+    while(numberOfPageTicket>0){
         n--;
         console.log('---------------------------------------------------', n)
         ticketNumber = [];

@@ -1,4 +1,4 @@
-const TicketModel = require('../models/ticket')
+const TicketModel = require('../models/ticketModel')
 
 exports.homePage = (req, res, next)=>{
     res.render('./home', {numberOfPage:0, data:[]});

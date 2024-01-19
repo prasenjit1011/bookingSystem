@@ -9,7 +9,7 @@ exports.getHotelList = (req, res, next)=>{
 
 exports.bookNow = (req, res, next)=>{
 
-    let hotelBooking = new Booking({userId:req.body.userId, hotelId: req.body.hotelId, dtd: req.body.dtd});
+    let hotelBooking = new Booking({userId:req.body.userId, hotelId: req.body.hotelId, dtd: req.body.dtd, hotelName:req.body.hotelName});
     return hotelBooking
             .save()
             .then(data=>{

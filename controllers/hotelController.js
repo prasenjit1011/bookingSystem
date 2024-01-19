@@ -9,9 +9,7 @@ exports.getHotelList = (req, res, next)=>{
 
 exports.bookNow = (req, res, next)=>{
 
-
     let hotelBooking = new Booking({userId:req.body.userId, hotelId: req.body.hotelId, dtd: req.body.dtd});
-
     return hotelBooking
             .save()
             .then(data=>{
@@ -21,4 +19,14 @@ exports.bookNow = (req, res, next)=>{
             })
             .catch();
 
+}
+
+exports.bookingList = (req, res, next)=>{
+
+    return Booking
+                .find()
+                .then(data=>{
+                    return res.end(JSON.stringify(data));
+                })
+                .catch();
 }

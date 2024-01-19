@@ -30,7 +30,16 @@ exports.getHotelDetails = (req, res, next)=>{
 
 exports.bookNow = (req, res, next)=>{
 
-    let hotelBooking = new Booking({userId:req.body.userId, hotelId: req.body.hotelId, dtd: req.body.dtd, hotelName:req.body.hotelName});
+    let data = {
+                userId:req.body.userId, 
+                hotelId: req.body.hotelId, 
+                dtd: req.body.dtd, 
+                guestNumber: req.body.guestNumber, 
+                price: req.body.price, 
+                hotelName: req.body.hotelName
+            };
+
+    let hotelBooking = new Booking(data);
     return hotelBooking
             .save()
             .then(data=>{

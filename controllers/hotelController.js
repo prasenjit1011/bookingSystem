@@ -1,10 +1,16 @@
+const HotelModel    = require('../models/hotelModel');
 const Booking = require('../models/bookingModel');
 
 exports.getHotelList = (req, res, next)=>{
-    let id = req.params.id ?? 1;
-    
-    console.log('Id =>> ', id);
-    next();
+
+    return HotelModel
+                .find()
+                .then(data=>{
+                    console.log(data);
+                    return res.end(JSON.stringify(data));
+                })
+                .catch();
+
 }
 
 exports.bookNow = (req, res, next)=>{

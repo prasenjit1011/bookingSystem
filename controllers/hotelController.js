@@ -13,6 +13,21 @@ exports.getHotelList = (req, res, next)=>{
 
 }
 
+
+exports.getHotelDetails = (req, res, next)=>{
+
+    return HotelModel
+                .findById(req.params.id)
+                .then(data=>{
+                    console.log(data);
+                    return res.end(JSON.stringify(data));
+                })
+                .catch();
+
+}
+
+
+
 exports.bookNow = (req, res, next)=>{
 
     let hotelBooking = new Booking({userId:req.body.userId, hotelId: req.body.hotelId, dtd: req.body.dtd, hotelName:req.body.hotelName});
